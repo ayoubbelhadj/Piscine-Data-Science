@@ -1,0 +1,30 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: piscineds_db
+    environment:
+      POSTGRES_USER: abelhadj
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_DB: piscineds
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ../customer:/customer
+      - ../items:/items
+    restart: unless-stopped
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: piscineds_pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: abelhadj@student.42.fr
+      PGADMIN_DEFAULT_PASSWORD: mysecretpassword
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
