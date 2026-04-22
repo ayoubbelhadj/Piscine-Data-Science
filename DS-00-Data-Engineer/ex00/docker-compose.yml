@@ -1,6 +1,6 @@
 services:
   postgres:
-    image: postgres:15
+    build: .
     container_name: piscineds_db
     environment:
       POSTGRES_USER: abelhadj
