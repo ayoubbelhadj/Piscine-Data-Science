@@ -31,7 +31,9 @@ print("-- Purchase Item Price Statistics --")
 print(df['price'].describe().to_string())
 print("-" * 36)
 
-basket_totals = df.groupby(['user_id', 'user_session'])['price'].sum().reset_index()
+basket_totals = (
+    df.groupby(['user_id', 'user_session'])['price'].sum().reset_index()
+)
 avg_basket_per_user = basket_totals.groupby('user_id')['price'].mean()
 
 fig, (ax1, ax2, ax3) = plt.subplots(nrows=3, ncols=1, figsize=(10, 15))
