@@ -29,7 +29,6 @@ df['date'] = df['event_time'].dt.normalize()
 
 df['month'] = df['event_time'].dt.to_period('M')
 
-# One groupby, two aggregations
 daily = df.groupby('date').agg(
     customers=('user_id', 'nunique'),
     sales=('price', 'sum')
