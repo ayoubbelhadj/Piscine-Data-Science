@@ -43,21 +43,17 @@ avg_spend = daily['sales'] / daily['customers']
 
 fig, (ax1, ax2, ax3) = plt.subplots(nrows=3, ncols=1, figsize=(10, 15))
 
-daily['customers'].plot(ax=ax1, color='#4c72b0')
+daily['customers'].plot(ax=ax1)
 ax1.set_ylabel('Number of customers')
 ax1.set_xlabel('')
-ax1.xaxis.set_major_locator(mdates.MonthLocator())
-ax1.xaxis.set_major_formatter(mdates.DateFormatter('%b'))
 
-monthly_sales.plot.bar(ax=ax2, color='#8da0cb', width=0.8, rot=0)
+monthly_sales.plot.bar(ax=ax2, width=0.8, rot=0)
 ax2.set_ylabel('total sales in million of ₳')
 ax2.set_xlabel('month')
 
-avg_spend.plot(kind='area', ax=ax3, color='#8da0cb', alpha=1)
+avg_spend.plot(kind='area', ax=ax3, alpha=1)
 ax3.set_ylabel('average spend/customers in ₳')
 ax3.set_xlabel('')
-ax3.xaxis.set_major_locator(mdates.MonthLocator())
-ax3.xaxis.set_major_formatter(mdates.DateFormatter('%b'))
 
 plt.savefig('chart.png')
 plt.show()
