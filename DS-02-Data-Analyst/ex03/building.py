@@ -8,7 +8,9 @@ DB_PASSWORD = 'mysecretpassword'
 DB_HOST = 'localhost'
 DB_NAME = 'piscineds'
 
-engine = create_engine(f'postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}')
+engine = create_engine(
+    f'postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}'
+)
 
 query = """
     SELECT user_id, user_session, price
@@ -23,7 +25,7 @@ except Exception as e:
     sys.exit(1)
 
 frequency = df.groupby('user_id')['user_session'].nunique()
-monetary  = df.groupby('user_id')['price'].sum()
+monetary = df.groupby('user_id')['price'].sum()
 
 fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, figsize=(12, 5))
 
