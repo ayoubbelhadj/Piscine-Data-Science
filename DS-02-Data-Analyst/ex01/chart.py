@@ -9,7 +9,9 @@ DB_PASSWORD = 'mysecretpassword'
 DB_HOST = 'localhost'
 DB_NAME = 'piscineds'
 
-engine = create_engine(f'postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}')
+engine = create_engine(
+    f'postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}'
+)
 
 query = """
     SELECT event_time, price, user_id
@@ -24,7 +26,7 @@ except Exception as e:
     sys.exit(1)
 
 df['event_time'] = pd.to_datetime(df['event_time'])
-df['date']  = df['event_time'].dt.normalize()
+df['date'] = df['event_time'].dt.normalize()
 
 df['month'] = df['event_time'].dt.to_period('M')
 
