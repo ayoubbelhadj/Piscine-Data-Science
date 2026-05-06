@@ -33,9 +33,9 @@ frequency = df.groupby('user_id')['user_session'].nunique()
 monetary = df.groupby('user_id')['price'].sum()
 
 features = pd.DataFrame({
-    'recency':   recency,
+    'recency': recency,
     'frequency': frequency,
-    'monetary':  monetary,
+    'monetary': monetary,
 })
 
 
