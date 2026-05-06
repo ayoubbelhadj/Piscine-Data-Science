@@ -38,15 +38,15 @@ avg_basket_per_user = basket_totals.groupby('user_id')['price'].mean()
 
 fig, (ax1, ax2, ax3) = plt.subplots(nrows=3, ncols=1, figsize=(10, 15))
 
-# --- Chart 1: Full item prices (with outliers visible) ---
+# item prices with outliers
 sns.boxplot(x=df['price'], ax=ax1, color='lightgreen')
 ax1.set_xlabel('price')
 
-# --- Chart 2: Item prices, zoomed (outliers hidden) ---
+# zoomed without outliers
 sns.boxplot(x=df['price'], ax=ax2, color='#84ca84', showfliers=False)
 ax2.set_xlabel('price')
 
-# --- Chart 3: Average basket price per user ---
+# avg basket per user
 sns.boxplot(x=avg_basket_per_user, ax=ax3, color='#7cb2d6', showfliers=False)
 ax3.set_xlabel('price')
 
