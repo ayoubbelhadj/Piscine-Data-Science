@@ -35,9 +35,9 @@ frequency = df.groupby('user_id')['user_session'].nunique()
 monetary = df.groupby('user_id')['price'].sum()
 
 features = pd.DataFrame({
-    'recency':   recency,
+    'recency': recency,
     'frequency': frequency,
-    'monetary':  monetary,
+    'monetary': monetary,
 }).dropna()
 
 
@@ -73,17 +73,17 @@ profile['name'] = profile.index.map(cluster_names)
 profile['recency_months'] = profile['median_recency'] / 30
 
 colors = {
-    'platinum':       '#9b59b6',
-    'loyal':          '#2ecc71',
-    'new customers':  '#3498db',
-    'inactive':       '#e74c3c',
+    'platinum': '#9b59b6',
+    'loyal': '#2ecc71',
+    'new customers': '#3498db',
+    'inactive': '#e74c3c',
 }
 
 print(profile)
 
 fig, (ax1, ax2, ax3) = plt.subplots(nrows=3, ncols=1, figsize=(9, 16))
 
-# --- Chart 1: Horizontal bar chart of customer counts per segment ---
+# customers per segment
 segment_counts = (
     profile[['count', 'name']].sort_values('count', ascending=True)
 )
@@ -101,7 +101,7 @@ ax1.spines['top'].set_visible(False)
 ax1.spines['right'].set_visible(False)
 
 
-# --- Chart 2: Bubble chart (business view) ---
+# recency vs frequency, bubble size = count
 ax2.scatter(
     x=profile['recency_months'],
     y=profile['median_frequency'],
@@ -125,7 +125,7 @@ ax2.set_ylim(bottom=0)
 ax2.spines['top'].set_visible(False)
 ax2.spines['right'].set_visible(False)
 
-# --- Chart 3: Cluster scatter (frequency vs monetary, with jitter) ---
+# frequency vs monetary per cluster
 draw_order = ['inactive', 'new customers', 'loyal', 'platinum']
 name_to_cluster = {v: k for k, v in cluster_names.items()}
 
