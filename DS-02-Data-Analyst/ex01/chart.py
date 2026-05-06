@@ -2,7 +2,6 @@ import sys
 import pandas as pd
 from sqlalchemy import create_engine
 import matplotlib.pyplot as plt
-import matplotlib.dates as mdates
 
 DB_USER = 'abelhadj'
 DB_PASSWORD = 'mysecretpassword'
